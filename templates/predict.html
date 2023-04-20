@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/predict.css">
+    <title>Model Deployment</title>
+
+</head>
+
+<body>
+    <div class="mycenter">
+        <h1 style="margin-left: 50px;">Predict the caterogy of Bean</h1>
+
+        <h2>
+            Enter the Numbers into all the feilds to categories the name of Beans
+        </h2>
+    </div>
+
+    <div class="alldiv">
+
+
+
+        <div class="form">
+
+            <form action="/" method="POST" class="lol">
+                <input type="text" name="a"  placeholder="Perimeter" required="required" />                
+                <input type="text" name="b"  placeholder="Extent" required="required" />
+                <input type="text" name="c"  placeholder="Solidity" required="required" />
+                <input type="text" name="d"  placeholder="roundness" required="required" />
+                <input type="text" name="e"  placeholder="Compactness" required="required" />
+
+
+                <button type="submit">Predict</button>
+
+
+            </form>
+        </div>
+
+        <div>
+            <h2>
+
+                {{ my_ourbeans }}
+            </h2>
+
+            <img src="{{ pic }}" alt="">
+        </div>
+
+    </div>
+
+
+
+
+
+
+</body>
+
+</html>

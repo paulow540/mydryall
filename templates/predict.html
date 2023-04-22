@@ -26,11 +26,11 @@
         <div class="form">
 
             <form action="/" method="POST" class="lol">
-                <input type="text" name="a"  placeholder="Perimeter" required="required" />                
-                <input type="text" name="b"  placeholder="Extent" required="required" />
-                <input type="text" name="c"  placeholder="Solidity" required="required" />
-                <input type="text" name="d"  placeholder="roundness" required="required" />
-                <input type="text" name="e"  placeholder="Compactness" required="required" />
+                <input type="text" name="a" placeholder="Perimeter" required="required" />
+                <input type="text" name="b" placeholder="Extent" required="required" />
+                <input type="text" name="c" placeholder="Solidity" required="required" />
+                <input type="text" name="d" placeholder="roundness" required="required" />
+                <input type="text" name="e" placeholder="Compactness" required="required" />
 
 
                 <button type="submit">Predict</button>
@@ -40,12 +40,21 @@
         </div>
 
         <div>
-            <h2>
+            <div>
 
+                {%if my_ourbeans == isna %}
+
+                <p>ghjk</p>
+            </div>
+            <div>
+                {%else%}
                 {{ my_ourbeans }}
-            </h2>
+                <img src="{{ pic }}" alt="">
+            </div>
+            {%endif%}
 
-            <img src="{{ pic }}" alt="">
+
+
         </div>
 
     </div>

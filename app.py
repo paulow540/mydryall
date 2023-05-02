@@ -1,14 +1,15 @@
 from flask import Flask, render_template, request,jsonify, url_for
 import os
 import pickle
-import plotly.express as px
 import pandas as pd
 import numpy as np
 
 
 
+
 picfolder = os.path.join("static","images")
 
+# init the app folder
 app = Flask(__name__)
 model = pickle.load(open("model.pkl", "rb"))
 app.config["UPLOAD_FOLDER"] = picfolder
@@ -17,6 +18,7 @@ app.config["UPLOAD_FOLDER"] = picfolder
 def home():
 
     return render_template("homepage.html")
+
 
 
 

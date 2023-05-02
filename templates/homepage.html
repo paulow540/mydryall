@@ -5,80 +5,161 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/homepage.css">
-    <title>Model Deployment</title>
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.6/examples/cover/">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <title>Document</title>
+
+
+
 
 </head>
+
+<style>
+    .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+            font-size: 3.5rem;
+        }
+    }
+</style>
+
 
 <body>
 
 
-    <div class="alldiv">
 
+    <main role="main">
 
-        <div class="inst">
-            <h1>
-                Dry Bean Multiclass Classification
-            </h1>
-            <h3>
-                Data Set Information:
-            </h3>
-            <p>
-                Seven different types of dry beans were used in this research,
-                taking into account the features such as form, shape, type, and
-                structure by the market situation. A computer vision system was
-                developed to distinguish seven different registered varieties of
-                dry beans with similar features in order to obtain uniform seed
-                classification. For the classification model, images of 13,611
-                grains of 7 different registered dry beans were taken with a
-                high-resolution camera. Bean images obtained by computer vision
-                system were subjected to segmentation and feature extraction stages,
-                and a total of 16 features; 12 dimensions and 4 shape forms, were
-                obtained from the grains.
-            </p>
+        <!-- Main jumbotron for a primary marketing message or call to action -->
+        <div class="jumbotron">
+            <div class="container">
+                <h3 class="display-5">Crop-Yield-Prediction</h3>
+                <p>This project is established towards the fulfilment of my masters degree at the university of
+                    Sunderland on a course titled data science product development(CETM46). It is an agricultural data
+                    science products that entails the design, development, and management process used in “crop yield
+                    prediction”. Crop yield prediction is a difficult task in the field of agriculture and is crucial
+                    for decision-making at the local, regional, and global scales. These predictions rely on various
+                    factors such as climate, soil, environmental, and crop parameters. Decision support models are
+                    widely used in extracting important crop features for prediction. These extractions require the use
+                    of sensing technologies, variable rate technologies, management information systems, and responses
+                    to variations within and between cropping systems. Machine learning (ML) models were also used after
+                    processing agricultural data and Regression models were deployed to predict the yield.
 
+                </p>
+                <p><a class="btn btn-primary btn-lg" href=" {{ url_for('mypredict') }}" role="button">predict
+                        &raquo;</a></p>
 
-            <p> Predict the categories of bean by entering their Attribute Information here <span><a
-                        href=" {{ url_for('predict') }}"><button>Predict</button></a></span> </p>
-
-
+                <p><a class="btn btn-primary btn-lg" href=" {{ url_for('visulisation') }}" role="button">visulisation
+                        &raquo;</a></p>
+            </div>
         </div>
 
-        <div class="img">
-            <img src="{{ mypic }}" alt="">
-        </div>
+        <div class="container">
+            <!-- Example row of columns -->
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>Dataset</h2>
+                    <p>Fertilizer usage and export quantity data which is in correspondence with yield data was taken
+                        from kaggle database. It utilizes weather conditions and factors such as Temperature(avg),
+                        precitipation, Export Quantity, and Fertilizer Used were used to train the ML models.</p>
 
+                </div>
+                <div class="col-md-6">
+                    <h2>ML Model</h2>
+                    <p>In order to predict the crop yield for each crop, regression models were deployed.
+
+                </div>
+
+                <hr>
+
+            </div>
+
+    </main>
+
+    <div class="container">
+        <h2>Explanation of the Parameters</h2>
+        <p> <b>Temperature (Avg):</b>
+            High temperature considerably influences the crops by affecting several physiological injuries like leaf
+            abscission, leaf scorching, senescence, and root and shoot growth limitation that subsequently leads to a
+            reduction in yield. </p>
+        <p> <b>Precipitation:</b> It can be defined as earthward falling of water drops or ice particles that have
+            formed by
+            rapid condensation in the atmosphere.</p>
+        <p> <b>Export Quantity:</b>
+            Export crops means crops whose majority of production shall be for export outside the State or whose
+            majority of the value-added products shall be exported. </p>
+        <p> <b>Fertilizer Usage:</b> Most fertilizers that are commonly used in agriculture contain the three basic
+            plant
+            nutrients: nitrogen, phosphorus, and potassium. Some fertilizers also contain certain "micronutrients," such
+            as zinc and other metals, that are necessary for plant growth.</p>
+
+        <h2>Sample of the Dataset</h2>
+        <table class="table table-hover table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Temperature (Avg)</th>
+                    <th scope="col">Precipitation </th>
+                    <th scope="col">Export Quantity</th>
+                    <th scope="col">Fertilizer Usage</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>8.56</td>
+                    <td>707.88</td>
+                    <td>6048.0</td>
+                    <td>19797629.50</td>
+
+                </tr>
+                <tr>
+                    <td>8.39</td>
+                    <td>772.08</td>
+                    <td>7761.0</td>
+                    <td>20796897.40</td>
+
+                </tr>
+                <tr>
+                    <td>8.92</td>
+                    <td>675.76</td>
+                    <td>10268.0</td>
+                    <td>21297411.80</td>
+
+                </tr>
+            </tbody>
+        </table>
     </div>
-    <div>
-        <hr>
-        <h3>
-            Attribute Information:
-        </h3>
-        <ul>
-            Perimeter (P): Bean circumference is defined as the length of its border.
-        </ul>
-        <ul>
-            Convex area (C): Number of pixels in the smallest convex polygon that can contain the area of a bean seed.
-        </ul>
-        <ul>
-            Extent (Ex): The ratio of the pixels in the bounding box to the bean area.
-        </ul>
-        <ul>
-            Solidity (S): Also known as convexity. The ratio of the pixels in the convex shell to those found in beans.
-        </ul>
-        <ul>
-            Roundness (R): Calculated with the following formula: (4piA)/(P^2)
-        </ul>
-        <ul>
-            Compactness (CO): Measures the roundness of an object: Ed/L
-        </ul>
-    </div>
 
 
 
 
 
 
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
+ 
+
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"
+        integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>

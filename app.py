@@ -1,79 +1,72 @@
-from flask import Flask , render_template, request,jsonify, url_for
-import pickle
+from flask import Flask, render_template, request,jsonify, url_for
 import os
+import pickle
+import plotly.express as px
+import pandas as pd
+import numpy as np
+
+
 
 picfolder = os.path.join("static","images")
-
-
-
-
-import numpy as np
 
 app = Flask(__name__)
 model = pickle.load(open("model.pkl", "rb"))
 app.config["UPLOAD_FOLDER"] = picfolder
-@app.route("/predict", methods = ['GET', 'POST'])
-def predict():
-    mPerimeter = request.form.get("a", False)
-    mExtent = request.form.get("b", False)
-    mSolidity = request.form.get("c", False)
-    mroundness = request.form.get("d", False)
-    mCompactness = request.form.get("e", False)
-    myfin = np.array([[mPerimeter,mExtent,mSolidity, mroundness, mCompactness   ]])
-    prediction = model.predict(myfin)
-    if prediction[0] == "SEKER":
-        print("'SEKER'")
-        pic1 = os.path.join(app.config["UPLOAD_FOLDER"], "seker bean.jpg")
-    elif prediction[0] == 'BARBUNYA':
-        print("BARBUNYA")
-        
-        pic1 = os.path.join(app.config["UPLOAD_FOLDER"], "BARBUNYA bean.jpg")
 
-    elif prediction[0] ==  'BOMBAY':
-        pic1 = os.path.join(app.config["UPLOAD_FOLDER"], "BOMBAY.jpg")
+@app.route("/")
+def home():
 
-        print('BOMBAY')
-    elif prediction[0] == 'CALI':
-        pic1 = os.path.join(app.config["UPLOAD_FOLDER"], "CALI bean.jpg")
+    return render_template("homepage.html")
 
-        print('CALI')
-    elif prediction[0] == 'HOROZ':
-        pic1 = os.path.join(app.config["UPLOAD_FOLDER"], "HOROZ bean.jpg")
 
-        print('HOROZ')
-    elif prediction[0] == 'SIRA':
-        pic1 = os.path.join(app.config["UPLOAD_FOLDER"], "SIRA bean.jpg")
 
-        print('SIRA')
+
+
+
+
+@app.route('/visulisation')
+def visulisation():
+    df = pd.read_csv("DryBeanDataset/crop_yield_data.csv")
+    # Create your Plotly Express visualization
+    fig = px.bar(df, x='Year', y='Export Quantity')
+
+    # Convert the figure to JSON
+    graphJSON = fig.to_json()
+
+    fig2 = px.bar(df, x='Yield', y='Crop')
+    graphJSON2 = fig2.to_json()
+
+
+    # Render the HTML template with the graphJSON
+    return render_template('visulisation.html', graphJSON=graphJSON, graphJSON2=graphJSON2)
+
+@app.route("/predict", methods = ['GET','POST'])
+def mypredict():
+    if request.method == 'POST':
+        myTemperature = int(request.form.get("Temperature", False))
+        myPrecipitation	= int(request.form.get("Precipitation", False))
+        myExport	= int(request.form.get("Export", False))
+        myFertilizer = int(request.form.get("Fertilizer", False))	
+        myAvocados = int(request.form.get("Crop_Avocados", False))	
+        myBananas = int(request.form.get("Crop_Bananas", False))	
+        myRice	 = int(request.form.get("Crop_Rice", False)) 	
+        myWheat	= int(request.form.get("Crop_Wheat", False))
+
+        print([myTemperature,myPrecipitation,myExport,myFertilizer,myAvocados,myBananas,myRice,myWheat ])
+        myfin = np.array([[myTemperature,myPrecipitation,myExport,myFertilizer,myAvocados,myBananas,myRice,myWheat ]])
+        prediction = model.predict(myfin)
+        if prediction[0]:
+                my = prediction[0]
+        else:
+            my = " "
+
+        return render_template("predict.html", my_ourbeans=f"{prediction[0]}")
+
     else:
-        pic1 = os.path.join(app.config["UPLOAD_FOLDER"], "DERMASON beans.jpg")
-            
-        print('DERMASON') 
-    
-    return render_template("predict.html", my_ourbeans=f"The Name of the Beans is {prediction[0]}" , pic=pic1)
-
-       
-    
-
-    
-
-@app.route("/", methods = ['GET', 'POST'])
-def homepage():
-    mypic1 = os.path.join(app.config["UPLOAD_FOLDER"], "all bearns.jpg")
-
-    
-    return render_template("homepage.html",mypic=mypic1)
+        return render_template("predict.html", my_ourbeans=f" ")
+         
+         
 
 
-
-
-if __name__ == "__main__":
-    app.run(debug=True)
-
-
-
-
-
-
-
-
+if  __name__ == "__main__":
+    app.run(debug=True)     

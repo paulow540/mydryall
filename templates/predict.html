@@ -1,68 +1,126 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/predict.css">
-    <title>Model Deployment</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <link rel="canonical" href="https://getbootstrap.com/docs/4.6/examples/cover/">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+    integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 
+
+
+
+
+ 
+
+
+  <!-- Custom styles for this template -->
+  <!-- <link href="floating-labels.css" rel="stylesheet"> -->
 </head>
+<style>
+  .bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  @media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+      font-size: 3.5rem;
+    }
+  }
+</style>
 
 <body>
-    <div class="mycenter">
-        <h1>Predict the caterogy of Bean</h1>
 
-        <h2>
-            Enter the Numbers into all the feilds to categories the name of Beans
-        </h2>
-    </div>
+  <div class="text-center mb-4">
+    <img class="mb-2 mt-5" src="/static/images/cropy1.jpg" alt="" width="150" height="100">
+    <h1 class="h3 mb-3 font-weight-normal">predict crop yield</h1>
+    <!-- <p>Build form controls with floating labels via the <code>:placeholder-shown</code> pseudo-element. <a href="https://caniuse.com/css-placeholder-shown">Works in latest Chrome, Safari, Firefox, and IE 10/11 (prefixed).</a></p> -->
+  </div>
+  <form action="/predict" method="POST" class="form-signin">
 
-    <div class="alldiv">
-
-
-
-        <div class="form">
-
-            <form action="/" method="POST" class="lol">
-                <input type="text" name="a" placeholder="Perimeter" required="required" />
-                <input type="text" name="b" placeholder="Extent" required="required" />
-                <input type="text" name="c" placeholder="Solidity" required="required" />
-                <input type="text" name="d" placeholder="roundness" required="required" />
-                <input type="text" name="e" placeholder="Compactness" required="required" />
-
-
-                <button type="submit">Predict</button>
-
-
-            </form>
-        </div>
-
-        <div>
-            <div>
-
-                {%if my_ourbeans == isna %}
-
-                <p>ghjk</p>
-            </div>
-            <div class="show">
-                {%else%}
-                {{ my_ourbeans }}
-                <img src="{{ pic }}" alt="">
-            </div>
-            {%endif%}
-
-
-
-        </div>
+    <div class="form-label-group">
+      <input type="text" name="Temperature" class="form-control" placeholder="Temperature (Avg)" required>
+      <label for="">Temperature (Avg)</label>
 
     </div>
 
+    <div class="form-label-group">
+      <input type="text" name="Precipitation" class="form-control" placeholder="Precipitation" required>
+      <label for="">Precipitation</label>
+    </div>
+
+    <div class="form-label-group">
+      <input type="text" name="Export" class="form-control" placeholder="Export Quantity" required>
+      <label for="">Export Quantity</label>
+    </div>
+
+    <div class="form-label-group">
+      <input type="text" name="Fertilizer" class="form-control" placeholder="Fertilizer Usage" required>
+      <label for="">Fertilizer Usage</label>
+    </div>
+
+
+    <div class="checkbox mb-3">
+      <label for="">Crop_Avocados</label>
+      <input type="checkbox" name="Crop_Avocados" value="1">
+
+    </div>
+    <div class="checkbox mb-3">
+      <label for="">Crop_Bananas</label>
+      <input type="checkbox" name="Crop_Bananas" value="1">
+
+    </div>
+    <div class="checkbox mb-3">
+      <label for="">Crop_Rice</label>
+      <input type="checkbox" name="Crop_Rice" value="1">
+
+    </div>
+
+    <div class="checkbox mb-3">
+      <label for="">Crop_Wheat</label>
+      <input type="checkbox" name="Crop_Wheat" value="1">
+
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit" name="mypredict">Check here to predict</button>
+  </form>
+
+  <p>
+    <a class="btn btn-primary btn-lg mt-5" href=" {{ url_for('home') }}" role="button">Home page &raquo;
+
+    </a>
+  </p>
 
 
 
+  <p>
+    The yield for Precipitation, Temperature (avg), Export Quantity, and Fertilizer Used is {{ my_ourbeans }}
+  </p>
 
+
+  <!-- <script src="/static/button.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
+  <!-- <script src="../assets/dist/js/bootstrap.bundle.min.js"></script> -->
+
+
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"
+    integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+"
+    crossorigin="anonymous"></script>
 
 </body>
 

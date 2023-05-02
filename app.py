@@ -20,26 +20,6 @@ def home():
 
 
 
-
-
-
-
-# @app.route('/visulisation')
-# def visulisation():
-#     df = pd.read_csv("DryBeanDataset/crop_yield_data.csv")
-#     # Create your Plotly Express visualization
-#     fig = px.bar(df, x='Year', y='Export Quantity')
-
-#     # Convert the figure to JSON
-#     graphJSON = fig.to_json()
-
-#     fig2 = px.bar(df, x='Yield', y='Crop')
-#     graphJSON2 = fig2.to_json()
-
-
-#     # Render the HTML template with the graphJSON
-#     return render_template('visulisation.html', graphJSON=graphJSON, graphJSON2=graphJSON2)
-
 @app.route("/predict", methods = ['GET','POST'])
 def mypredict():
     if request.method == 'POST':
